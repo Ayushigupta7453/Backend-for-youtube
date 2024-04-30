@@ -2,7 +2,7 @@
 
 // }
 
-export {asyncHandler}
+
 
 const asyncHandler = (fn)=>async(req,res,next)=>{
    try{
@@ -15,3 +15,4 @@ const asyncHandler = (fn)=>async(req,res,next)=>{
     })
    }
 }
+export {asyncHandler}
