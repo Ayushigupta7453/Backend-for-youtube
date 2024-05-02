@@ -1,5 +1,5 @@
 import {Router} from "express";
-import { loginUser, registerUser, logoutUser,refreshAccessToken} from "../controllers/user.controllers";
+import { loginUser, registerUser, logoutUser,refreshAccessToken, changeCurrentPassword, getCurrentUser, updateAccountDetails, updateUserAvatar,updateCoverImage, getUserChannelprofile, getWatchHistory} from "../controllers/user.controllers";
 import {upload} from "../middlewares/multer.middlewares";
 
 
@@ -24,5 +24,24 @@ router.route("/login").post( loginUser)
 //secured routes
 router.route("/logout").post(verifyJWT , logoutUser)
 router.route("/refresh-token").post(refreshAccessToken)
+
+router.route("/change-password").post(verifyJWT,changeCurrentPassword)
+router.route("/current-user").get(verifyJWT,getCurrentUser)
+router
+.route("/update-account")
+.patch(verifyJWT,updateAccountDetails)//The verifyJWT middleware function is being passed to the router.route("/update-account").patch() method to ensure that the incoming request has a valid JSON Web Token (JWT) attached to it before allowing the updateAccountDetails function to execute.
+
+router
+.route("/avatar")
+.patch(
+  verifyJWT,
+  upload.single("avatar"),updateUserAvatar)
+
+  
+router.route("/cover-image").patch(verifyJWT,upload.single("coverImage"),updateCoverImage)
+
+router.route("/c/:username").get(verifyJWT,getUserChannelprofile)
+router.route("/history").get(verifyJWT,getWatchHistory)
+
 
 export default router
