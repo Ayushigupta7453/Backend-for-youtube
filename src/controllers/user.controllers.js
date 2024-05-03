@@ -2,7 +2,7 @@ import {asyncHandler} from "../utils/asyncHandler";
 import {ApiError} from "../utils/ApiError"; 
 import { uploadoncloudinary } from "../utils/cloudinary";
 import { User } from "../models/user.models";
-import { ApiResponse } from "../utils/ApiResponse.";
+import { ApiResponse } from "../utils/ApiResponse";
 import { jwt } from "jsonwebtoken";
 
 //method to generate access and refresh token both. this method is created so that we can use this again and again
